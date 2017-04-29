@@ -1,9 +1,12 @@
 package com.example.trist.tristanhoobroeckx_pset3;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void watchStartIntent(ArrayList<String> searchData){
-
+        Intent dataIntent = new Intent(this, DataActivity.class);
+        dataIntent.putExtra("data", searchData);
+        this.startActivity(dataIntent);
     }
 }
