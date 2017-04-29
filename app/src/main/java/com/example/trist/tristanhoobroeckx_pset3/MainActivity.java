@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         asyncTask.execute(search);
 
         editText.getText().clear();
+//        watchStartIntent();
     }
 
     public void watchStartIntent(ArrayList<String> searchData){
