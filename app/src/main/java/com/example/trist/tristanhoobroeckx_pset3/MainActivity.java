@@ -20,15 +20,22 @@ public class MainActivity extends AppCompatActivity {
         assert editText != null;
     }
 
+    /*
+    Get input from user and start AsyncTask
+    then clear EditText
+     */
     public void watchSearch(View view){
         String search = editText.getText().toString();
         SearchAsyncTask asyncTask = new SearchAsyncTask(this);
         asyncTask.execute(search);
 
         editText.getText().clear();
-//        watchStartIntent();
     }
 
+    /*
+    Once we get the Array witch all the data, we need to start the Activity that displays
+    the data.
+     */
     public void watchStartIntent(ArrayList<String> searchData){
         Intent dataIntent = new Intent(this, DataActivity.class);
         dataIntent.putExtra("data", searchData);
