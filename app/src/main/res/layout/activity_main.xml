@@ -7,25 +7,17 @@
     tools:context="com.example.trist.tristanhoobroeckx_pset3.MainActivity">
 
     <EditText
-        android:id="@+id/editTextTitle"
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="title"
-        />
-
-    <EditText
-        android:id="@+id/editTextYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTitle"
-        android:hint="year"
+        android:hint="Search..."
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/editTextYear"
+        android:layout_below="@+id/editText"
         android:text="Search"
         android:onClick="watchSearch"/>
 

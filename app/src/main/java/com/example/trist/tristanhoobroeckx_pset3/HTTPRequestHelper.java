@@ -14,15 +14,14 @@ public class HTTPRequestHelper {
 
     protected static synchronized String downloadFromServer(String... params) {
         String result = "";
-        String tTag = params[0];
-        String yTag = params[1];
+        String Tag = params[0];
 
         /*
         Hier maken we de URL aan.
          */
         URL url;
         try {
-            String requestAddress = "http://www.omdbapi.com/?t=" + tTag + "&y=" + yTag + "&plot=full";
+            String requestAddress = "http://www.omdbapi.com/?s=" + Tag + "&plot=full";
             url = new URL(requestAddress);
         } catch (IOException e) {
             throw new RuntimeException(e);

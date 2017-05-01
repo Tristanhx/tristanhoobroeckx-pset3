@@ -2,6 +2,7 @@ package com.example.trist.tristanhoobroeckx_pset3;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -41,26 +42,16 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String> {
         /*
         Make JSONArray and JSONObjects for every part you need. Then put JSONArray in ArrayList
         */
-        JSONArray jsonArray = new JSONArray();
-        ArrayList<String> searchData = new ArrayList<>();
+        ArrayList<JSONObject> searchData = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(result);
 
-            JSONObject titleObject = jsonObject.getJSONObject("title");
-            jsonArray.put(titleObject);
-
-            JSONObject yearObject = jsonObject.getJSONObject("year");
-            jsonArray.put(yearObject);
-
-            JSONObject plotObject = jsonObject.getJSONObject("plot");
-            jsonArray.put(plotObject);
-
-            JSONObject posterObject = jsonObject.getJSONObject("poster");
-            jsonArray.put(posterObject);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                searchData.add(jsonArray.getString(i));
+            JSONArray searchArray = jsonObject.getJSONArray("Search");
+            Log.d("log", "SearchAsync Search");
+            for(int i = 0 ; i < searchArray.length(); i++) {
+                searchData.add(searchArray.getJSONObject(i));
             }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
