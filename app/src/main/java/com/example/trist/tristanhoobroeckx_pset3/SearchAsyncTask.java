@@ -57,13 +57,8 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String> {
                 movieObject.title = movie.getString("Title");
                 movieObject.year = movie.getInt("Year");
                 movieObject.imdbID = movie.getString("imdbID");
-                Log.d("woop", "hoi!");
-                Log.d("woop", movieObject.title);
-                Log.d("woop", movieObject.year.toString());
-                Log.d("woop", movieObject.imdbID);
 
                 searchData.add(movieObject);
-                Log.d("woop", searchData.toString());
             }
 
 

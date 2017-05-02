@@ -42,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
     the data.
      */
     public void watchStartIntent(ArrayList<MovieObject> searchData){
-        for (MovieObject movieObject : searchData){
-
-        }
-
         Intent dataIntent = new Intent(this, DataActivity.class);
         dataIntent.putExtra("data", searchData);
         this.startActivity(dataIntent);

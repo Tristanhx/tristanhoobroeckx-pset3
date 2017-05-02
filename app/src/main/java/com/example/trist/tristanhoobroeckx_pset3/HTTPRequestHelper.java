@@ -23,7 +23,7 @@ public class HTTPRequestHelper {
          */
         URL url;
         try {
-            String requestAddress = "http://www.omdbapi.com/?s=" + Tag + "&plot=full";
+            String requestAddress = "http://www.omdbapi.com/?s=" + Tag;
             url = new URL(requestAddress);
             Log.d("tag", requestAddress);
         } catch (IOException e) {
