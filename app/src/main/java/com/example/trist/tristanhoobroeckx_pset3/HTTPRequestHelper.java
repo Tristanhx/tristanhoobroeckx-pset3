@@ -1,5 +1,7 @@
 package com.example.trist.tristanhoobroeckx_pset3;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,6 +25,7 @@ public class HTTPRequestHelper {
         try {
             String requestAddress = "http://www.omdbapi.com/?s=" + Tag + "&plot=full";
             url = new URL(requestAddress);
+            Log.d("tag", requestAddress);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -44,6 +47,7 @@ public class HTTPRequestHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        Log.d("result", result);
         return result;
     }
 }

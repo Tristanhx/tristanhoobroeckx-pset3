@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -15,10 +16,12 @@ import java.util.ArrayList;
 public class DataActivity extends AppCompatActivity {
     TextView movieResult;
     ListView listItems;
-    ArrayList<String> movieArray;
+    ArrayList<MovieObject> movieArray;
+    ArrayList<String> titleArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        Log.d("datahere", "Ik ben er!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
@@ -26,17 +29,25 @@ public class DataActivity extends AppCompatActivity {
         listItems = (ListView) findViewById(R.id.list);
 
         Bundle extras = getIntent().getExtras();
-        movieArray = (ArrayList<String>) extras.getSerializable("data");
+        movieArray = (ArrayList<MovieObject>) extras.getSerializable("data");
+        titleArray = new ArrayList<>();
+        for (MovieObject movieObject : movieArray){
+            Log.d("title0", movieObject.getTitle());
+            titleArray.add(movieObject.getTitle());
+        }
+
+
 
         makeListAdapter();
     }
 
     public void makeListAdapter(){
         ArrayAdapter arrayAdapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, android.R.id.text1, movieArray);
+                (this, android.R.layout.simple_list_item_2, android.R.id.text1, titleArray);
         listItems = (ListView) findViewById(R.id.list);
         assert listItems != null;
         listItems.setAdapter(arrayAdapter);
 
     }
+
 }

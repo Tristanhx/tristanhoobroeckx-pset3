@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Tristan on 29/04/2017.
@@ -42,14 +43,27 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String> {
         /*
         Make JSONArray and JSONObjects for every part you need. Then put JSONArray in ArrayList
         */
-        ArrayList<JSONObject> searchData = new ArrayList<>();
+        Log.d("woop", "HOI!");
+        ArrayList<MovieObject> searchData = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(result);
 
             JSONArray searchArray = jsonObject.getJSONArray("Search");
             Log.d("log", "SearchAsync Search");
             for(int i = 0 ; i < searchArray.length(); i++) {
-                searchData.add(searchArray.getJSONObject(i));
+                JSONObject movie = searchArray.getJSONObject(i);
+                MovieObject movieObject = new MovieObject();
+
+                movieObject.title = movie.getString("Title");
+                movieObject.year = movie.getInt("Year");
+                movieObject.imdbID = movie.getString("imdbID");
+                Log.d("woop", "hoi!");
+                Log.d("woop", movieObject.title);
+                Log.d("woop", movieObject.year.toString());
+                Log.d("woop", movieObject.imdbID);
+
+                searchData.add(movieObject);
+                Log.d("woop", searchData.toString());
             }
 
 

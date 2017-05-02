@@ -9,6 +9,7 @@ import android.widget.EditText;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText;
@@ -40,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
     Once we get the Array witch all the data, we need to start the Activity that displays
     the data.
      */
-    public void watchStartIntent(ArrayList<JSONObject> searchData){
+    public void watchStartIntent(ArrayList<MovieObject> searchData){
+        for (MovieObject movieObject : searchData){
+
+        }
+
         Intent dataIntent = new Intent(this, DataActivity.class);
-        searchData.toString();
         dataIntent.putExtra("data", searchData);
         this.startActivity(dataIntent);
     }
