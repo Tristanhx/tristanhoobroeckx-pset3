@@ -27,7 +27,7 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPreExecute(){
-        Toast.makeText(context, "Searching for movies...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Searching...", Toast.LENGTH_SHORT).show();
     }
 
     @Override

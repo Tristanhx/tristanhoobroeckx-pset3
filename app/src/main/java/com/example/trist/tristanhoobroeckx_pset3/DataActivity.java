@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,17 @@ public class DataActivity extends AppCompatActivity {
 
         movieResult = (TextView) findViewById(R.id.movieresult);
         listItems = (ListView) findViewById(R.id.list);
-//        listItems.setOnClickListener(onItemClick());
+        listItems.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedFromList = (String) listItems.getItemAtPosition(position);
+                        Log.d("selected", selectedFromList);
+                        SearchAsyncTask asyncTask2 = new SearchAsyncTask(DataActivity.this);
+                        asyncTask2.execute(selectedFromList);
+
+                        Intent intent = new Intent(DataActivity.this, MovieActivity.class);
+                        intent.putExtra("selectedmovie", selectedFromList);
+                        startActivity(intent);
+            }});
 
         Bundle extras = getIntent().getExtras();
         movieArray = (ArrayList<MovieObject>) extras.getSerializable("data");
@@ -49,12 +60,6 @@ public class DataActivity extends AppCompatActivity {
                 (this, android.R.layout.simple_list_item_2, android.R.id.text1, titleArray);
         assert listItems != null;
         listItems.setAdapter(arrayAdapter);
-
-    }
-
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-        Intent intent = new Intent(this, MovieActivity.class);
-
 
     }
 }
