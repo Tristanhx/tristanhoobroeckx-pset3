@@ -21,6 +21,7 @@ public class DataActivity extends AppCompatActivity {
     ListView listItems;
     ArrayList<MovieObject> movieArray;
     ArrayList<String> titleArray;
+    String selectedFromList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -32,14 +33,11 @@ public class DataActivity extends AppCompatActivity {
         listItems = (ListView) findViewById(R.id.list);
         listItems.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String selectedFromList = (String) listItems.getItemAtPosition(position);
+                        selectedFromList = (String) listItems.getItemAtPosition(position);
+                        selectedFromList = selectedFromList.replace(" ", "+");
                         Log.d("selected", selectedFromList);
-                        SearchAsyncTask asyncTask2 = new SearchAsyncTask(DataActivity.this);
-                        asyncTask2.execute(selectedFromList);
 
-                        Intent intent = new Intent(DataActivity.this, MovieActivity.class);
-                        intent.putExtra("selectedmovie", selectedFromList);
-                        startActivity(intent);
+                        watchSearch();
             }});
 
         Bundle extras = getIntent().getExtras();
@@ -53,6 +51,18 @@ public class DataActivity extends AppCompatActivity {
 
 
         makeListAdapter();
+    }
+
+    public void watchSearch() {
+
+        SearchAsyncTask2 asyncTask2 = new SearchAsyncTask2(this);
+        asyncTask2.execute(selectedFromList);
+    }
+
+    public void watchStartIntent(ArrayList<MovieObject> movieData) {
+        Intent movieIntent = new Intent(this, MovieActivity.class);
+        movieIntent.putExtra("data", movieData);
+        this.startActivity(movieIntent);
     }
 
     public void makeListAdapter(){

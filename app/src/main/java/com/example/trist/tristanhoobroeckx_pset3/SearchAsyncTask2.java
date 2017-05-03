@@ -2,7 +2,6 @@ package com.example.trist.tristanhoobroeckx_pset3;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -10,29 +9,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by Tristan on 29/04/2017.
  */
 
-public class SearchAsyncTask extends AsyncTask<String, Integer, String> {
+public class SearchAsyncTask2 extends AsyncTask<String, Integer, String> {
     Context context;
-    MainActivity mainActivity;
+    DataActivity dataActivity;
 
-    public SearchAsyncTask(MainActivity main){
-        this.mainActivity = main;
-        this.context = this.mainActivity.getApplicationContext();
-    }
-
-    @Override
-    protected void onPreExecute(){
-        Toast.makeText(context, "Searching...", Toast.LENGTH_SHORT).show();
+    public SearchAsyncTask2(DataActivity data){
+        this.dataActivity = data;
+        this.context = this.dataActivity.getApplicationContext();
     }
 
     @Override
     protected String doInBackground(String... params){
-        return HTTPRequestHelper.downloadFromServer(params);
+        return HTTPRequestHelper2.downloadFromServer(params);
     }
 
     @Override
@@ -47,20 +40,21 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
 
-            JSONArray searchArray = jsonObject.getJSONArray("Search");
-            for(int i = 0 ; i < searchArray.length(); i++) {
-                JSONObject movie = searchArray.getJSONObject(i);
                 MovieObject movieObject = new MovieObject();
 
-                movieObject.title = movie.getString("Title");
+                movieObject.title = jsonObject.getString("Title");
+                movieObject.year = jsonObject.getInt("Year");
+                movieObject.director = jsonObject.getString("Director");
+                movieObject.actors = jsonObject.getString("Actors");
+                movieObject.plot = jsonObject.getString("Plot");
+                movieObject.poster = jsonObject.getString("Poster");
+
 
                 searchData.add(movieObject);
-            }
-
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        this.mainActivity.watchStartIntent(searchData);
+        this.dataActivity.watchStartIntent(searchData);
     }
 }

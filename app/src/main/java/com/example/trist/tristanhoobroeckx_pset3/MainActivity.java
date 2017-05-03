@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void watchSearch(View view) {
         String title = editText.getText().toString();
+        title = title.replace(" ", "+");
 
         SearchAsyncTask asyncTask = new SearchAsyncTask(this);
 

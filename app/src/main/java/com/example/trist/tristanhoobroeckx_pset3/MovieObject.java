@@ -9,7 +9,10 @@ import java.io.Serializable;
 class MovieObject implements Serializable {
     String title;
     Integer year;
-    String imdbID;
+    String director;
+    String actors;
+    String plot;
+    String poster;
 
     public String getTitle(){
         return title;
@@ -17,7 +20,16 @@ class MovieObject implements Serializable {
     public Integer getYear(){
         return year;
     }
-    public String getImdbID() {
-        return imdbID;
+    public String getDir() {
+        return director;
+    }
+    public String getActors() {
+        return actors;
+    }
+    public String getPlot() {
+        return plot;
+    }
+    public String getPoster() {
+        return poster;
     }
 }
